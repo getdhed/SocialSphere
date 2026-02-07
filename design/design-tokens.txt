@@ -1,0 +1,12 @@
+Fonts:
+- Primary: Inter, sans-serif
+- Secondary: Arial, sans-serif
+
+Colors:
+- Primary: #4A6CF7
+- Secondary: #111827
+- Background: #FFFFFF
+- Text: #1F2937
+
+Spacing:
+- Base unit: 8px
