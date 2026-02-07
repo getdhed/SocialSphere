@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SocialSphere</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container header__row">
+        <div class="logo">SocialSphere</div>
+
+        <nav class="nav">
+          <a class="nav__link" href="#">Лента</a>
+          <a class="nav__link" href="#">Сообщения</a>
+          <a class="nav__link" href="#">Профиль</a>
+        </nav>
+
+        <button id="themeBtn" class="btn">Тема</button>
+      </div>
+    </header>
+
+    <main class="container layout">
+      <section class="card">
+        <h1 class="title">Лента</h1>
+
+        <form id="postForm" class="form">
+          <input id="nameInput" class="input" type="text" placeholder="Ваше имя" required />
+          <textarea
+            id="textInput"
+            class="input"
+            placeholder="Что нового?"
+            rows="3"
+            required
+          ></textarea>
+          <button class="btn btn--primary" type="submit">Опубликовать</button>
+        </form>
+
+        <div id="feed" class="feed"></div>
+      </section>
+
+      <aside class="card sidebar">
+        <h2 class="subtitle">Профиль</h2>
+        <div class="profile">
+          <div class="avatar">SS</div>
+          <div>
+            <div class="profile__name">Гость</div>
+            <div class="profile__meta">0 постов</div>
+          </div>
+        </div>
+
+        <div class="hint">
+          <div class="hint__title">Подсказка</div>
+          <div class="hint__text">Добавь пару постов и сделай скриншоты для отчёта.</div>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__row">
+        <span>© 2026 SocialSphere</span>
+        <span class="muted">Лаба 2: рабочее окружение</span>
+      </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
