@@ -52,7 +52,7 @@ SocialSphere/
 
 ## Ссылки
 - Репозиторий: **https://github.com/getdhed/SocialSphere/tree/master**
-- Макет Figma: **(вставь ссылку на Figma)**
+- Макет Figma: **https://www.figma.com/design/OX73HgOfi1rxloDxUHCREU/SocialSphere?node-id=0-1&t=gR0PEvTy9edkJzOY-1**
 
 ## Примечание
 Проект носит учебный характер и предназначен для демонстрации навыков настройки рабочего окружения
