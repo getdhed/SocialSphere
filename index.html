@@ -4,65 +4,129 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SocialSphere</title>
+    <meta name="description" content="Социальная сеть SocialSphere — профиль пользователя и лента публикаций." />
     <link rel="stylesheet" href="css/style.css" />
   </head>
+
   <body>
-    <header class="header">
-      <div class="container header__row">
-        <div class="logo">SocialSphere</div>
+    <!-- skip-link для доступности -->
+    <a href="#main" class="skip-link">Перейти к основному содержимому</a>
 
-        <nav class="nav">
-          <a class="nav__link" href="#">Лента</a>
-          <a class="nav__link" href="#">Сообщения</a>
-          <a class="nav__link" href="#">Профиль</a>
-        </nav>
+    <!-- Organization -->
+    <div itemscope itemtype="https://schema.org/Organization">
+      <header class="header">
+        <div class="container header__row">
+          <div class="logo" itemprop="name">SocialSphere</div>
 
-        <button id="themeBtn" class="btn">Тема</button>
-      </div>
-    </header>
+          <nav class="nav" aria-label="Основная навигация">
+            <a class="nav__link" href="#">Лента</a>
+            <a class="nav__link" href="#">Сообщения</a>
+            <a class="nav__link" href="#">Профиль</a>
+          </nav>
 
-    <main class="container layout">
-      <section class="card">
-        <h1 class="title">Лента</h1>
-
-        <form id="postForm" class="form">
-          <input id="nameInput" class="input" type="text" placeholder="Ваше имя" required />
-          <textarea
-            id="textInput"
-            class="input"
-            placeholder="Что нового?"
-            rows="3"
-            required
-          ></textarea>
-          <button class="btn btn--primary" type="submit">Опубликовать</button>
-        </form>
-
-        <div id="feed" class="feed"></div>
-      </section>
-
-      <aside class="card sidebar">
-        <h2 class="subtitle">Профиль</h2>
-        <div class="profile">
-          <div class="avatar">SS</div>
-          <div>
-            <div class="profile__name">Гость</div>
-            <div class="profile__meta">0 постов</div>
-          </div>
+          <button id="themeBtn" class="btn" type="button">Тема</button>
         </div>
 
-        <div class="hint">
-          <div class="hint__title">Подсказка</div>
-          <div class="hint__text">Добавь пару постов и сделай скриншоты для отчёта.</div>
-        </div>
-      </aside>
-    </main>
+        <p class="visually-hidden" itemprop="description">
+          Социальная сеть для общения и публикации контента.
+        </p>
+      </header>
 
-    <footer class="footer">
-      <div class="container footer__row">
-        <span>© 2026 SocialSphere</span>
-        <span class="muted">Лаба 2: рабочее окружение</span>
-      </div>
-    </footer>
+      <main id="main" class="container layout">
+        <!-- Основной контент -->
+        <section class="card" aria-label="Лента публикаций">
+          <h1 class="title">Лента</h1>
+
+          <form id="postForm" class="form" aria-label="Форма создания публикации">
+            <label class="visually-hidden" for="nameInput">Имя пользователя</label>
+            <input
+              id="nameInput"
+              class="input"
+              type="text"
+              placeholder="Ваше имя"
+              required
+            />
+
+            <label class="visually-hidden" for="textInput">Текст публикации</label>
+            <textarea
+              id="textInput"
+              class="input"
+              placeholder="Что нового?"
+              rows="3"
+              required
+            ></textarea>
+
+            <button class="btn btn--primary" type="submit">Опубликовать</button>
+          </form>
+
+          <!-- пример статьи -->
+          <article class="post">
+            <header class="post__header">
+              <h2 class="post__title">Первый пост</h2>
+              <time class="post__time" datetime="2026-02-07">7 февраля 2026</time>
+            </header>
+
+            <p class="post__text">
+              Это пример публикации в ленте социальной сети SocialSphere.
+            </p>
+
+            <figure class="post__media">
+              <img
+                src="images/post-1.jpg"
+                alt="Пример изображения публикации"
+                width="600"
+                height="400"
+              />
+              <figcaption>Изображение публикации</figcaption>
+            </figure>
+          </article>
+
+          <div id="feed" class="feed"></div>
+        </section>
+
+        <!-- Боковая панель -->
+        <aside class="card sidebar" aria-label="Профиль пользователя">
+          <!-- Person -->
+          <section class="profile" itemscope itemtype="https://schema.org/Person">
+            <h2 class="subtitle">Профиль</h2>
+
+            <figure class="profile__avatar">
+              <img
+                src="images/avatar.jpg"
+                alt="Аватар пользователя"
+                width="64"
+                height="64"
+                itemprop="image"
+              />
+              <figcaption class="visually-hidden">Аватар пользователя</figcaption>
+            </figure>
+
+            <div class="profile__info">
+              <p class="profile__name" itemprop="name">Гость</p>
+              <p class="profile__meta" itemprop="description">
+                Пользователь социальной сети SocialSphere
+              </p>
+            </div>
+          </section>
+
+          <section class="hint">
+            <h3 class="hint__title">Подсказка</h3>
+            <p class="hint__text">
+              Добавь пару постов и сделай скриншоты для отчёта.
+            </p>
+          </section>
+        </aside>
+      </main>
+
+      <footer class="footer">
+        <div class="container footer__row">
+          <span>
+            © <time datetime="2026">2026</time> SocialSphere
+          </span>
+          <span class="muted">Лабораторная работа №3</span>
+        </div>
+      </footer>
+    </div>
 
     <script src="js/script.js"></script>
   </body>
