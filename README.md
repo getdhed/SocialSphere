@@ -26,19 +26,21 @@
 - Figma — проектирование интерфейса
 
 ## Структура проекта
+~~~text
 SocialSphere/
 ├── assets/
 ├── css/
-│ └── style.css
+│   └── style.css
 ├── design/
-│ └── figma-link.txt
+│   └── figma-link.txt
 ├── images/
 ├── js/
-│ └── script.js
+│   └── script.js
 ├── index.html
 ├── package.json
 ├── .gitignore
 └── README.md
+~~~
 
 ## Функциональность
 - Отображение главной страницы социальной сети
