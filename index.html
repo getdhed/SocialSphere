@@ -10,60 +10,99 @@
     <header class="header">
       <div class="container header__row">
         <div class="logo">SocialSphere</div>
-
         <nav class="nav">
-          <a class="nav__link" href="#">Лента</a>
-          <a class="nav__link" href="#">Сообщения</a>
-          <a class="nav__link" href="#">Профиль</a>
+          <a class="nav__link" href="#feedSection">Лента</a>
+          <a class="nav__link" href="#profileSection">Профиль</a>
+          <a class="nav__link" href="#labSection">Функции</a>
         </nav>
-
-        <button id="themeBtn" class="btn">Тема</button>
+        <div class="header__actions">
+          <button id="themeBtn" class="btn" type="button">Тема</button>
+          <button id="openPostModalBtn" class="btn btn--primary" type="button">Новый пост</button>
+        </div>
       </div>
     </header>
-
     <main class="container layout">
-      <section class="card">
-        <h1 class="title">Лента</h1>
-
-        <form id="postForm" class="form">
-          <input id="nameInput" class="input" type="text" placeholder="Ваше имя" required />
-          <textarea
-            id="textInput"
-            class="input"
-            placeholder="Что нового?"
-            rows="3"
-            required
-          ></textarea>
-          <button class="btn btn--primary" type="submit">Опубликовать</button>
-        </form>
-
-        <div id="feed" class="feed"></div>
+      <section id="feedSection" class="card">
+        <div class="section-head">
+          <div>
+            <h1 class="title">Лента</h1>
+            <p class="muted section-head__text">Лайкайте записи, оставляйте комментарии и прокручивайте ленту для подгрузки новых постов.</p>
+          </div>
+          <div id="feedStats" class="badge">0 постов</div>
+        </div>
+        <div class="composer card card--ghost">
+          <div class="composer__avatar">SS</div>
+          <button id="openPostComposerBtn" class="composer__button" type="button">Поделиться новостью с друзьями...</button>
+        </div>
+        <div id="feed" class="feed" aria-live="polite"></div>
+        <div id="feedStatus" class="feed-status muted">Прокрутите вниз, чтобы продолжать листать ленту.</div>
+        <div id="feedSentinel" class="feed-sentinel" aria-hidden="true"></div>
       </section>
-
-      <aside class="card sidebar">
+      <aside id="profileSection" class="card sidebar">
         <h2 class="subtitle">Профиль</h2>
         <div class="profile">
           <div class="avatar">SS</div>
           <div>
-            <div class="profile__name">Гость</div>
-            <div class="profile__meta">0 постов</div>
+            <div id="profileName" class="profile__name">Гость</div>
+            <div id="profileMeta" class="profile__meta">0 постов • 0 лайков</div>
           </div>
         </div>
-
-        <div class="hint">
-          <div class="hint__title">Подсказка</div>
-          <div class="hint__text">Добавь пару постов и сделай скриншоты для отчёта.</div>
+        <div class="sidebar-stats">
+          <div class="stat">
+            <span class="stat__value" id="totalCommentsStat">0</span>
+            <span class="stat__label">Комментариев</span>
+          </div>
+          <div class="stat">
+            <span class="stat__value" id="loadedPostsStat">0</span>
+            <span class="stat__label">В ленте</span>
+          </div>
+        </div>
+        <div id="labSection" class="hint">
+          <div class="hint__title">Для лабораторной №5</div>
+          <div class="hint__text">На странице реализованы события `click`, `submit`, `input`, работа с DOM, LocalStorage, модальное окно, лайки, комментарии, изображения и бесконечная прокрутка.</div>
         </div>
       </aside>
     </main>
-
+    <div id="postModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle">
+      <div class="modal__backdrop" data-close-modal="true"></div>
+      <div class="modal__dialog">
+        <div class="modal__head">
+          <div>
+            <h2 id="modalTitle" class="subtitle">Создать новый пост</h2>
+            <p class="muted modal__text">Заполните форму, и публикация сразу появится в ленте.</p>
+          </div>
+          <button id="closePostModalBtn" class="icon-btn" type="button" aria-label="Закрыть окно">×</button>
+        </div>
+        <form id="postForm" class="form" novalidate>
+          <label class="field">
+            <span class="field__label">Имя автора</span>
+            <input id="nameInput" class="input" type="text" name="author" placeholder="Например, Алина" maxlength="30" required />
+          </label>
+          <label class="field">
+            <span class="field__label">Текст поста</span>
+            <textarea id="textInput" class="input" name="content" placeholder="Что нового?" rows="5" maxlength="280" required></textarea>
+          </label>
+          <label class="field">
+            <span class="field__label">Фото к посту</span>
+            <input id="imageInput" class="input" type="file" name="image" accept="image/*" />
+          </label>
+          <div class="form__footer">
+            <div id="textCounter" class="muted">0 / 280</div>
+            <div class="form__actions">
+              <button id="cancelPostBtn" class="btn" type="button">Отмена</button>
+              <button class="btn btn--primary" type="submit">Опубликовать</button>
+            </div>
+          </div>
+          <div id="formMessage" class="form__message" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
     <footer class="footer">
       <div class="container footer__row">
         <span>© 2026 SocialSphere</span>
-        <span class="muted">Лаба 2: рабочее окружение</span>
+        <span class="muted">Лабораторная работа №5: интерактивный интерфейс на JavaScript</span>
       </div>
     </footer>
-
-    <script src="js/script.js"></script>
+    <script type="module" src="js/script.js"></script>
   </body>
 </html>
