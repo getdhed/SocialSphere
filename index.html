@@ -13,7 +13,6 @@
         <nav class="nav">
           <a class="nav__link" href="#feedSection">Лента</a>
           <a class="nav__link" href="#profileSection">Профиль</a>
-          <a class="nav__link" href="#labSection">Функции</a>
         </nav>
         <div class="header__actions">
           <button id="themeBtn" class="btn" type="button">Тема</button>
@@ -26,16 +25,22 @@
         <div class="section-head">
           <div>
             <h1 class="title">Лента</h1>
-            <p class="muted section-head__text">Лайкайте записи, оставляйте комментарии и прокручивайте ленту для подгрузки новых постов.</p>
+            <p class="muted section-head__text">
+              Данные загружаются с удаленного сервера, кэшируются в браузере и продолжают работать в оффлайн-режиме.
+            </p>
           </div>
-          <div id="feedStats" class="badge">0 постов</div>
+          <div class="section-head__badges">
+            <div id="connectionBadge" class="badge">Онлайн</div>
+            <div id="syncBadge" class="badge">Очередь: 0</div>
+            <div id="feedStats" class="badge">0 постов</div>
+          </div>
         </div>
         <div class="composer card card--ghost">
           <div class="composer__avatar">SS</div>
           <button id="openPostComposerBtn" class="composer__button" type="button">Поделиться новостью с друзьями...</button>
         </div>
         <div id="feed" class="feed" aria-live="polite"></div>
-        <div id="feedStatus" class="feed-status muted">Прокрутите вниз, чтобы продолжать листать ленту.</div>
+        <div id="feedStatus" class="feed-status muted">Загружаем данные...</div>
         <div id="feedSentinel" class="feed-sentinel" aria-hidden="true"></div>
       </section>
       <aside id="profileSection" class="card sidebar">
@@ -56,11 +61,12 @@
             <span class="stat__value" id="loadedPostsStat">0</span>
             <span class="stat__label">В ленте</span>
           </div>
+          <div class="stat">
+            <span class="stat__value" id="queuedPostsStat">0</span>
+            <span class="stat__label">В очереди</span>
+          </div>
         </div>
-        <div id="labSection" class="hint">
-          <div class="hint__title">Для лабораторной №5</div>
-          <div class="hint__text">На странице реализованы события `click`, `submit`, `input`, работа с DOM, LocalStorage, модальное окно, лайки, комментарии, изображения и бесконечная прокрутка.</div>
-        </div>
+        <p id="cacheInfo" class="muted hint__text">Кэш еще не создан.</p>
       </aside>
     </main>
     <div id="postModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle">
@@ -69,7 +75,7 @@
         <div class="modal__head">
           <div>
             <h2 id="modalTitle" class="subtitle">Создать новый пост</h2>
-            <p class="muted modal__text">Заполните форму, и публикация сразу появится в ленте.</p>
+            <p class="muted modal__text">Черновик сохраняется автоматически. При плохом соединении пост попадет в очередь.</p>
           </div>
           <button id="closePostModalBtn" class="icon-btn" type="button" aria-label="Закрыть окно">×</button>
         </div>
@@ -88,9 +94,10 @@
           </label>
           <div class="form__footer">
             <div id="textCounter" class="muted">0 / 280</div>
+            <div id="draftStatus" class="muted">Черновик не сохранен</div>
             <div class="form__actions">
               <button id="cancelPostBtn" class="btn" type="button">Отмена</button>
-              <button class="btn btn--primary" type="submit">Опубликовать</button>
+              <button id="submitPostBtn" class="btn btn--primary" type="submit">Опубликовать</button>
             </div>
           </div>
           <div id="formMessage" class="form__message" aria-live="polite"></div>
@@ -100,9 +107,9 @@
     <footer class="footer">
       <div class="container footer__row">
         <span>© 2026 SocialSphere</span>
-        <span class="muted">Лабораторная работа №5: интерактивный интерфейс на JavaScript</span>
+        <span class="muted">Лабораторная работа №6: веб-API браузера и асинхронные операции</span>
       </div>
     </footer>
-    <script type="module" src="js/script.js"></script>
+    <script type="module" src="js/script.js" charset="UTF-8"></script>
   </body>
 </html>

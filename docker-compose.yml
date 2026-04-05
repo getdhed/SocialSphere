@@ -1,0 +1,9 @@
+services:
+  socialsphere:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: socialsphere
+    ports:
+      - "8080:80"
+    restart: unless-stopped

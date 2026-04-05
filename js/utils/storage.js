@@ -21,7 +21,7 @@ function readJson(key, fallbackValue) {
     const rawValue = localStorage.getItem(key);
     return rawValue ? JSON.parse(rawValue) : fallbackValue;
   } catch (error) {
-    console.error(`Не удалось прочитать данные из LocalStorage по ключу ${key}`, error);
+    console.error(`Не удалось прочитать данные из локального хранилища по ключу ${key}`, error);
     return fallbackValue;
   }
 }

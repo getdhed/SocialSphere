@@ -9,10 +9,12 @@ export function createPostCard(post) {
     ? `<img class="post__image" src="${post.image}" alt="Изображение публикации ${escapeHtml(post.author)}" />`
     : "";
 
+  const syncMeta = getSyncMeta(post.syncStatus);
+
   const commentsBlock = post.areCommentsOpen
     ? `
       <div class="comment-list">
-        ${renderComments(post.comments)}
+        ${renderComments(post)}
       </div>
       <form class="comment-form" data-role="comment-form" data-post-id="${post.id}">
         <input class="input" type="text" name="commentAuthor" placeholder="Ваше имя" maxlength="30" value="${escapeHtml(post.lastCommentAuthor || DEFAULT_AUTHOR)}" />
@@ -38,6 +40,7 @@ export function createPostCard(post) {
       <div class="post__meta">
         <span>${post.likes} лайков</span>
         <span>${post.comments.length} комментариев</span>
+        <span class="post__sync post__sync--${syncMeta.tone}">${syncMeta.label}</span>
       </div>
     </div>
     ${imageBlock}
@@ -56,12 +59,25 @@ export function createPostCard(post) {
   return article;
 }
 
-function renderComments(comments) {
-  if (!comments.length) {
-    return `<div class="comment"><div class="muted">Пока нет комментариев. Станьте первым.</div></div>`;
+function renderComments(post) {
+  if (post.commentsLoading) {
+    return `<div class="comment comment--state"><div class="muted">Загружаем комментарии...</div></div>`;
   }
 
-  return comments
+  if (post.commentsError) {
+    return `
+      <div class="comment comment--state">
+        <div class="form__message is-error">${escapeHtml(post.commentsError)}</div>
+        <button class="btn" type="button" data-action="retry-comments" data-post-id="${post.id}">Повторить</button>
+      </div>
+    `;
+  }
+
+  if (!post.comments.length) {
+    return `<div class="comment comment--state"><div class="muted">Пока нет комментариев. Станьте первым.</div></div>`;
+  }
+
+  return post.comments
     .map(
       (comment) => `
         <div class="comment">
@@ -74,4 +90,20 @@ function renderComments(comments) {
       `,
     )
     .join("");
+}
+
+function getSyncMeta(status) {
+  if (status === "queued") {
+    return { tone: "queued", label: "В очереди" };
+  }
+
+  if (status === "sending") {
+    return { tone: "sending", label: "Отправка..." };
+  }
+
+  if (status === "failed") {
+    return { tone: "failed", label: "Ошибка синхр." };
+  }
+
+  return { tone: "synced", label: "Синхронизирован" };
 }

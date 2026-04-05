@@ -179,6 +179,13 @@ button:active {
   margin-bottom: 16px;
 }
 
+.section-head__badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
 .section-head__text,
 .modal__text {
   margin: 6px 0 0;
@@ -202,6 +209,18 @@ button:active {
   border-radius: 999px;
   padding: 8px 12px;
   background: rgba(59, 130, 246, 0.12);
+}
+
+.badge--success {
+  background: rgba(34, 197, 94, 0.16);
+}
+
+.badge--danger {
+  background: rgba(244, 63, 94, 0.18);
+}
+
+.badge--warning {
+  background: rgba(245, 158, 11, 0.2);
 }
 
 .composer {
@@ -295,6 +314,29 @@ button:active {
   flex-wrap: wrap;
 }
 
+.post__sync {
+  border-radius: 999px;
+  padding: 4px 9px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.post__sync--synced {
+  color: #22c55e;
+}
+
+.post__sync--queued {
+  color: #f59e0b;
+}
+
+.post__sync--sending {
+  color: #60a5fa;
+}
+
+.post__sync--failed {
+  color: #fb7185;
+}
+
 .action-btn,
 .icon-btn,
 .btn {
@@ -348,6 +390,10 @@ button:active {
   background: rgba(255, 255, 255, 0.03);
 }
 
+.comment--state {
+  text-align: center;
+}
+
 .comment__author {
   font-weight: 600;
 }
@@ -374,6 +420,18 @@ button:active {
   padding: 12px;
   text-align: center;
   background: rgba(255, 255, 255, 0.03);
+}
+
+.feed-status.is-error {
+  color: var(--danger);
+}
+
+.feed-status.is-info {
+  color: var(--accent);
+}
+
+.feed-status.is-success {
+  color: var(--success);
 }
 
 .feed-sentinel {
@@ -412,6 +470,10 @@ button:active {
   font-size: 1.5rem;
   font-weight: 800;
   color: var(--text);
+}
+
+.stat__label {
+  color: var(--muted);
 }
 
 .hint {
@@ -566,6 +628,10 @@ body.modal-open {
   .post__actions {
     width: 100%;
     flex-wrap: wrap;
+  }
+
+  .section-head__badges {
+    width: 100%;
   }
 
   .header__actions > *,
